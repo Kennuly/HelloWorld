@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+//kuoluo给sort添加注释
 void sort(int arr[], int size)
 {
     int temp = 0;
