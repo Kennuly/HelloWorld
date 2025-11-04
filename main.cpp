@@ -2,6 +2,7 @@
 using namespace std;
 void sort(int arr[], int size)
 {
+    //阿洛添加注释
     int temp = 0;
     for(int i = 0; i < size - 1; i++)
     {
