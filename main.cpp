@@ -3,6 +3,7 @@ using namespace std;
 //kuoluo给sort添加注释
 void sort(int arr[], int size)
 {
+    bool flag = false;
     //阿洛添加注释
     int temp = 0;
     for(int i = 0; i < size - 1; i++)
@@ -14,7 +15,12 @@ void sort(int arr[], int size)
                 temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
+                flag = true;
             }
+        }
+        if(!flag)
+        {
+            break;
         }
     }
 }
