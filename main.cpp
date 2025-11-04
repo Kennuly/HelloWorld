@@ -1,35 +1,51 @@
 #include <iostream>
 using namespace std;
-//kuoluo给sort添加注释
-void sort(int arr[], int size)
+
+void quickSort(int arr[], int i, int j)
 {
-    bool flag = false;
-    //阿洛添加注释
-    int temp = 0;
-    for(int i = 0; i < size - 1; i++)
+    if (i >= j)  // ✅ 递归结束条件
+        return;
+
+    int val = arr[i];
+    int l = i;
+    int r = j;
+
+    while (l < r)
     {
-        for(int j = 0; j < size - 1 - i; j++)
-        {
-	    //阿洛修改排序，从大到小
-            if(arr[j] < arr[j + 1])
-            {
-                temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-                flag = true;
-            }
-        }
-        if(!flag)
-        {
-            break;
-        }
+        // 从右往左找第一个小于基准的数
+        while (l < r && arr[r] >= val)
+            r--;
+        if (l < r)
+            arr[l++] = arr[r];
+
+        // 从左往右找第一个大于基准的数
+        while (l < r && arr[l] <= val)
+            l++;
+        if (l < r)
+            arr[r--] = arr[l];
     }
+
+    arr[l] = val;  // 放回基准值
+
+    // 递归处理左右两部分
+    quickSort(arr, i, l - 1);
+    quickSort(arr, l + 1, j);
+}
+
+void quickSort(int arr[], int size)
+{
+    quickSort(arr, 0, size - 1); // ✅ 修正
 }
 int main()
 {
     int arr[] = {12, 3, 8, 20, 9, 7, 6};
     int size = sizeof(arr) / sizeof(arr[0]);
-    sort(arr, size);
+    quickSort(arr, size);
+    for(int i = 0; i < size; i++)
+    {
+        cout << arr[i] << "  ";
+    }
+    cout << endl;
 
     return 0;
 } 
